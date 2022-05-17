@@ -12,7 +12,7 @@ function criarCards(arrayProdutos) {
         <div class="cards">
 
         <div class="cards-img">
-            <img src="./${produto.img}" alt="${produto.nameItem}">
+            <img src="${produto.img}" alt="${produto.nameItem}">
         </div>
 
         <div class="cards-container">
