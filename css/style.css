@@ -1,0 +1,266 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
+/* Header */ 
+
+header {
+    width: 100%;
+    display: flex;
+    height: 70px;
+    box-shadow: 0px 4px 30px -10px rgba(0, 0, 0, 0.25);
+}
+
+header div {
+    display: flex;
+    width: 80%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 115px 0;
+}
+
+header div h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+header div h1 a {
+    text-decoration: none;
+    color: #333333;
+}
+
+header div nav {
+    display: flex;
+
+}
+
+header div nav ul {
+    display: flex;
+    list-style: none;
+    padding: 15px;
+}
+
+header div nav ul #firstLink {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #333333;
+}
+
+header div nav ul #firstLink:hover {
+    color: #828282;
+}
+
+
+header div nav ul li a {
+    text-decoration: none;
+    padding: 5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #828282;
+}
+
+header div nav ul li a:hover {
+    color: #37268C;
+}
+
+/* Main */
+
+main {
+    margin-top: 50px;
+    height: 100%;
+    display: flex;
+    margin: 50px 115px 0;
+}
+
+main .container {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    margin-right: 50px;
+}
+
+main .container .cards {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
+    height: 410px;
+    align-items: center;
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.10);
+    margin-bottom: 30px;
+    
+}
+
+.cards {
+    border: 0.5px solid #2e245e00;
+}
+
+.cards:hover {
+    border: 0.5px solid #2E245E;
+}
+
+.cards:hover button:nth-child(5) {
+    text-decoration: underline;
+}
+
+main .container .cards .cards-img {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-color: #f5f5f5;
+    height: 154px;
+    
+}
+
+main .container .cards img {
+    width: 191.81px;
+    height: 140px;    
+}
+
+main .container .cards .cards-container {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    align-items:flex-start;
+    justify-content: space-between;
+    height: 100%;
+}
+
+main .container .cards .cards-container .buttonTag {
+    border-style: none;
+    width: 70px;
+    height: 24px;
+    background-color: #2E245E;
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+main .container .cards .cards-container .cards-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #292929;
+}
+
+main .container .cards .cards-container .cards-description {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: #242424;
+}
+
+main .container .cards .cards-container .cards-price {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2E245E;
+}
+
+main .container .cards .cards-container button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #242424;
+    border-style: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+
+main .aside {
+    min-width: 300px;
+    height: 100%;
+}
+
+main .aside aside {
+    width: 100%;
+}
+
+main .aside aside .pesquisa {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+main .aside aside .pesquisa input {
+    width: 70%;
+    height: 50px;
+    text-align: start;
+    padding: 17px 14px;
+    border-style: none;
+    background-color: #F5F5F5;
+}
+
+main .aside aside .pesquisa button {
+    width: 25%;
+    height: 50px;
+    background-color: #2E245E;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+
+main .aside div {
+    
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .aside .carrinho {
+    margin-top: 30px;
+    background-color: #F5F5F5;
+}
+
+main .aside .carrinho .carrinho-titulo {
+    background-color: #2E245E;
+    color: #FFFFFF;
+    width: 100%;
+    height: 50px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main .aside .carrinho .carrinho-titulo h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+main .aside .carrinho .carrinho-titulo p {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+}
