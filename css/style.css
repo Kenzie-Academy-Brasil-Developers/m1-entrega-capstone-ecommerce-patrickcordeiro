@@ -27,7 +27,7 @@ header {
 
 header div {
     display: flex;
-    width: 80%;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     margin: 0 115px 0;
@@ -86,7 +86,8 @@ main {
     margin-top: 50px;
     height: 100%;
     display: flex;
-    margin: 50px 115px 0;
+    width: 100%;
+    padding: 30px 115px 0;
 }
 
 main .container {
@@ -118,9 +119,6 @@ main .container .cards {
     border: 0.5px solid #2E245E;
 }
 
-.cards:hover button:nth-child(5) {
-    text-decoration: underline;
-}
 
 main .container .cards .cards-img {
     width: 100%;
@@ -183,10 +181,15 @@ main .container .cards .cards-container button {
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 14px;
-    color: #242424;
+    color: #37268C;
     border-style: none;
     background-color: #FFFFFF;
     cursor: pointer;
+}
+
+main .container .cards .cards-container button:hover {
+    text-decoration: underline;
+    color: #828282;
 }
 
 
