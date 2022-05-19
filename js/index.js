@@ -1,21 +1,25 @@
 let container = document.querySelector('.container')
+
 let categoriasProdutos = document.querySelectorAll('.categorias-produtos')
+
 let search = document.querySelector('#pesquisar')
+
 let botaoSearch = document.querySelector('#botao-pesquisa')
-let valorTotal = document.getElementById('valor-total')
-valorTotal.innerHTML = 'R$ 0,00'
-let quantidade = document.getElementById('qtde')
-quantidade.innerHTML = '0'
-let somador2 = 0
 botaoSearch.addEventListener('click', pesquisa)
 
+let valorTotal = document.getElementById('valor-total')
+valorTotal.innerHTML = 'R$ 0,00'
+let total = 0
+
+let quantidade = document.getElementById('qtde')
+quantidade.innerHTML = '0'
+
+let somador2 = 0
 
 
 let carrinho = document.querySelector('.carrinho-itens')
 
 function criarCards(arrayProdutos) {
-    
-
 
    arrayProdutos.forEach(produto => {
         
@@ -42,9 +46,8 @@ function criarCards(arrayProdutos) {
     
 }
 
-
-
 criarCards(data)
+
 let addCart = document.querySelectorAll('.addCart')
 let arrayCarrinho = []
 for( let i = 0; i < addCart.length;i++){
@@ -52,7 +55,7 @@ for( let i = 0; i < addCart.length;i++){
 }
 
 let botaoClicado = ''
-let removerProduto = ''
+let removerProduto = 0
 let elementoRemover = ''
 let ul = document.createElement('ul')
 if(ul.childElementCount == 0) {
@@ -66,74 +69,77 @@ if(ul.childElementCount == 0) {
     carrinho.classList.remove('carrinho-vazio')
 }
 
-
+let carrinhoItens = document.querySelector('.carrinho-itens').children    
+let id = 0
 function encherCarrinho(event) {
+    
     botaoClicado = event.currentTarget.parentNode.parentNode
     
     carrinho.innerHTML = ''
     carrinho.classList.remove('carrinho-vazio')
     ul.insertAdjacentHTML('beforeend', `
-    <li class="carrinho-produto">
+    <li class="carrinho-produto" id="${id}">
     <img src="${botaoClicado.children[0].children[0].attributes[0].value}" alt="" >
     <div>
         <h3>${botaoClicado.children[1].children[1].textContent}</h3>
-        <p>${botaoClicado.children[1].children[3].textContent}</p>
-        <button class="remove">Remover produto</button>
+        <p id="${id}">${botaoClicado.children[1].children[3].textContent}</p>
+        <button class="remove" id="${id}" >Remover produto</button>
     </div>
     </li>
     
     `)
-
-    // console.log(botaoClicado.children[1].children[3].textContent)
+    id++
     carrinho.appendChild(ul)
 
     quantidade.innerHTML = ul.childElementCount
     
     
     let somador = parseInt(botaoClicado.children[1].children[3].textContent.slice(4, -3))
+    
     somador2 += somador
-    // console.log(somador2)
+    
     valorTotal.innerHTML = `R$ ${somador2},00`
     
-    // s
-    // arrayCarrinho.push(removerProduto)
+    removerProduto = document.querySelectorAll('.remove')
+    console.log(removerProduto)
+    for(let i = 0; i < removerProduto.length; i++) {
 
-    // elementoRemover = removerProduto.parentElement.parentElement
+        removerProduto[i].addEventListener('click', removeItem, false)
+    }
+    
 
-    // console.log(removerProduto)
-    // removerProduto.addEventListener('click', () => {
-    //     elementoRemover.remove()
-    // })
-    
-    
+}
+
+function removeItem(event){
+    console.log(Math.floor(parseInt(quantidade.textContent) / 2) / Math.floor(parseInt(quantidade.textContent) / 2))
+    console.log(parseInt(event.target.parentNode.children[1].textContent.slice(4, -3)))
+    event.target.parentNode.parentNode.remove()
+    quantidade.innerHTML = ul.childElementCount
+    somador2 = somador2 - parseInt(event.target.parentNode.children[1].textContent.slice(4, -3))
+    valorTotal.innerHTML = `R$ ${somador2},00`
+    if(ul.childElementCount == 0) {
+        carrinho.insertAdjacentHTML('beforeend', `
+        <h3>Carrinho Vazio</h3>
+        <p>Adicione itens</p> 
+        `)
+        carrinho.classList.add('carrinho-vazio')
+        quantidade.innerHTML = ul.childElementCount
+        valorTotal.innerHTML = "R$ 0,00"
+    }
 }
 
 
 
-
-
-
-// for(let i = 0; i < arrayCarrinho.length; i++){
-//     removerProduto = arrayCarrinho[i].children[1].children[2]
-//     console.log(removerProduto)
-//     removerProduto.addEventListener('click', removeProduto)
-// }
-
-// function removeProduto(event){
-//     let removeClicado = event.currentTarget
-//     console.log(removeClicado)
-// }
-
-
 function pesquisa(){
     let palavrasbusca = search.value.split(' ')
-
+    let encontrado = false
     let nomeProduto = ''
     console.log(palavrasbusca)
     data.forEach(produto => {
         nomeProduto = produto.nameItem.split(' ')
         for(let i = 0; i < nomeProduto.length;i++){
             for(let j = 0; j < palavrasbusca.length;j++){
+                console.log(palavrasbusca[j].toLowerCase() == nomeProduto[i].toLowerCase())
                 if(palavrasbusca[j].toLowerCase() == nomeProduto[i].toLowerCase()) {
                     container.innerHTML = ''
                     container.insertAdjacentHTML("beforeend", 
@@ -155,15 +161,21 @@ function pesquisa(){
                     
                     `)
                     
+                encontrado = true
+                } 
                 
-                }
-        
             }
         }
+
     });
+
+    if(!encontrado) {
+        container.innerHTML = ''
+        container.innerHTML = 'Nenhum produto encontrado'
+        container.classList.add('nao-encontrado')
+    }
 }
 
-console.log(categoriasProdutos)
 
 for( let x = 0; x < categoriasProdutos.length;x++){
     categoriasProdutos[x].addEventListener('click', listarCategorias)
@@ -178,14 +190,13 @@ function listarCategorias(event) {
     if(event.currentTarget.textContent == 'Acessórios'){
         data.forEach(produto => {
             
-                if(produto.tag == 'Acessórios') {
-                    acessorios.push(produto)
-                }
+            if(produto.tag == 'Acessórios') {
+                acessorios.push(produto)
+            }
             
-            
-    
         });
         container.innerHTML = ''
+        container.classList.remove('nao-encontrado')
         acessorios.forEach(item => {
             container.insertAdjacentHTML("beforeend", 
             `
@@ -214,10 +225,10 @@ function listarCategorias(event) {
                 camisetas.push(produto)
             }
         
-        
 
     });
     container.innerHTML = ''
+    container.classList.remove('nao-encontrado')
     camisetas.forEach(item => {
         container.insertAdjacentHTML("beforeend", 
         `
@@ -241,6 +252,7 @@ function listarCategorias(event) {
     }else {
         container.innerHTML = ''
         container.innerHTML = 'Nenhum produto encontrado'
+        container.classList.add('nao-encontrado')
     }
 }
     

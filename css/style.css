@@ -270,6 +270,19 @@ main .aside .carrinho .carrinho-titulo p {
     font-size: 14px;
 }
 
+.nao-encontrado {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    font-size: 30px;
+    font-family: 'Inter';
+    font-weight: 400;
+}
+
+
 .carrinho-vazio {
     display: flex;
     align-items: center;
